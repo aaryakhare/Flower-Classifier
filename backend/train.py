@@ -1,5 +1,6 @@
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier 
 
 iris = load_iris()
 
@@ -33,3 +34,15 @@ X_train, X_test, y_train, y_test = train_test_split(
 print("\n===== Training and Testing Data =====")
 print("Training Samples:", X_train.shape[0])
 print("Testing Samples:", X_test.shape[0])
+
+knn = KNeighborsClassifier(n_neighbors=3)
+print("\nk-NN model created successfully!")
+
+knn.fit(X_train, y_train)
+print("k-NN model trained successfully!")
+
+y_pred = knn.predict(X_test)
+print("Predictions completed successfully!")
+
+accuracy = knn.score(X_test, y_test)
+print(f"\nModel Accuracy: {accuracy * 100:.2f}%")
